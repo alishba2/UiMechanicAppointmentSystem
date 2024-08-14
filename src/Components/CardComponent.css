@@ -1,0 +1,129 @@
+.card-arrows {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .left-arrow,
+  .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 10px;
+    font-size: 40px; /* Increase the font size for larger arrows */
+    color: #00cc00; /* Bold green color */
+    padding: 8px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  
+  
+  .left-arrow {
+    left: 0;
+  }
+  
+  .right-arrow {
+    right: 0;
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    align-items: center;
+    height: 50vh; /* 50% of the viewport height */
+    width: 100vw; /* 100% of the viewport width */
+    background-color: rgb(255, 252, 252); /* Set the background color of the container */
+  }
+  
+  .card {
+    height: 50vh; /* Set the height of the card */
+    width: 150vh; /* Set the width of the card */
+    background-color: rgb(255, 246, 246); /* Set the background color of the card */
+    border-radius: 10px; /* Add some border radius for rounded corners */
+    padding: 50px; /* Add some padding inside the card */
+    text-align: center; /* Center align the text inside the card */
+    position: relative; /* Position the arrows relative to the card */
+    margin-top: 50px;
+  }
+  .card h2 {
+    text-align: left;
+    width: 140vh;
+    margin-bottom: 10px;
+    border-bottom: 4px solid green; /* Increase the border-bottom-width to make the line thicker */
+    padding-bottom: 5px;
+  }
+  
+  .card {
+    background-color: #fffdfd; /* Outer card color */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  .uppercase-text {
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.212);
+    font-weight: bold;
+  }
+  
+  
+  .inner-card {
+    background-color: #ffffff; /* Inner card color */
+    padding: 10px;
+    border-radius: 5px;
+    height: 160px;
+    width: 190px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.582); /* Add a shadow effect */
+  }
+  
+  
+  .inner-card img {
+    max-width: 80%;
+    height: 80px;
+  }
+  
+  .inner-card h3,
+  .inner-card p {
+    margin: 0;
+  }
+  .card {
+  display: flex;
+  flex-direction: row;
+}
+
+.inner-card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Adjust as needed */
+}
+
+.inner-card {
+  flex: 0 0 20%; /* Adjust the width as needed */
+  background-color: #fffdfd;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: 200px;
+}
+
+.inner-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.inner-card h3,
+.inner-card p {
+  margin: 0;
+}
+
+
+.inner-card.active {
+  display: block;
+}

@@ -1,0 +1,41 @@
+.form-container {
+    width: 103%;
+    border: 4px solid green;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .my-form {
+    width: 103%;
+    height: 600px; /* Set the height of the slider */
+    overflow: hidden; /* Hide overflow images */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .image-container {
+    display: flex;
+    overflow: hidden;
+  }
+  img {
+    vertical-align: middle;
+    
+  }
+  .slider-wrapper {
+    display: flex;
+    transition: transform 1s ease;
+  }
+  
+  .slider-image {
+    width: 100%; /* Cover the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Add spacing between images */
+  }
+  
+  
+  .slider-image:last-child {
+    margin-right: 10px; /* Remove margin from the last image */
+  }
+ 
+  
+  

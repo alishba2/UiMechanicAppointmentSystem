@@ -1,0 +1,96 @@
+/* Add.css */
+
+.card-arrows {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.left-arrow,
+.right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none; /* Remove border from the arrows */
+    font-size: 40px; /* Increase the font size for larger arrows */
+    color: #00cc00; /* Bold green color */
+    padding: 8px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+.icon-container {
+    margin-top: 10px; /* Add space above the icons */
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    display: flex; /* Display the icon and text in the same line */
+    align-items: center; /* Center align the items vertically */
+    margin-right: 6px; /* Reduce the space between the icons */
+    color: black; /* Set the color of the text to black */
+}
+
+.green-icon {
+    color: rgba(11, 12, 11, 0.534); /* Set the color of the icons to green */
+    margin-right: 5px; /* Add space between the icon and text */
+    font-size: 20px; /* Set the font size for the icon */
+}
+
+.view-add-button {
+    border: none;
+    background-color: green;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px; /* Adjust the value to change the roundness */
+    box-shadow: 2px 2px 5px black;
+    transition: background-color 0.3s ease; /* Add a transition for a smoother color change */
+    cursor: pointer;
+}
+
+.view-add-button:hover {
+    background-color: red; /* Change background color to red on hover */
+}
+
+.view-add-button:active {
+    background-color: red; /* Change background color to red when button is clicked */
+}
+
+.inner-card img {
+    max-width: 110%;
+    height: 170px; /* Adjust the height as needed */
+    width: 100%; /* Set the width to 100% to fill the container */
+}
+
+.card {
+    height: 60vh; /* Set the height of the card */
+    width: 150vh; /* Set the width of the card */
+    background-color: rgb(255, 254, 254); /* Set the background color of the card */
+    border-radius: 10px; /* Add some border radius for rounded corners */
+    padding: 20px; /* Add some padding inside the card */
+    text-align: center; /* Center align the text inside the card */
+    position: relative; /* Position the arrows relative to the card */
+    margin-top: 50px;
+  }
+
+h2 {
+    color: rgb(14, 6, 6); /* Set the text color to white */
+    text-shadow: 2px 2px 4px rgba(141, 9, 9, 0.822); /* Add a red shadow */
+    padding: 9px; /* Add padding to the heading */
+    background-color: rgba(184, 176, 176, 0.007); /* Add a semi-transparent black background */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    text-align: center; /* Center align the text */
+    margin-top: 9px; /* Add margin to the top */
+}

@@ -1,0 +1,81 @@
+.appointment-container-new {
+    text-align: center;
+    padding: 20px;
+    background-image: linear-gradient(to bottom, #10cc48d2, #0e0606b2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 3%;
+    margin-left: 20%;
+  }
+  .sidebar {
+    width: 250px;
+    background-image: linear-gradient(to bottom, #10cc48, #0e0606);
+    padding: 20px;
+    color: white;
+    margin-top: 3%;
+    max-height: 400px;
+    
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    
+  }
+  .sidebar ul  :hover{
+    color: rgb(8, 236, 65);
+  }
+
+
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    color: rgb(239, 247, 240);
+    text-decoration: none;
+    display: flex;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .appointment-header-new {
+    margin-bottom: 20px;
+  }
+  
+  .mechanic-cards-new {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .mechanic-card-new {
+    background-color: rgb(15, 12, 12);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    flex: 1;
+    max-width: 250px;
+  }
+  
+  .mechanic-card-new:hover {
+    transform: scale(1.09);
+  }
+  
+  .mechanic-card-new.selected {
+    background-color: #060a06;
+  }
+  
+  .mechanic-card-new h2 {
+    margin-top: 0;
+  }
+  
+  .mechanic-card-new p {
+    margin: 5px 0;
+  }
+  

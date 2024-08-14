@@ -1,0 +1,209 @@
+/* Footer.css */
+
+.footer {
+  background-color: rgb(15, 11, 11); /* Change background color to black */
+  color: white; /* Change text color to white */
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  background-color: #020508; /* Light gray background color */
+  padding: 20px;
+  border-radius: 10px; /* Round corners */
+}
+
+.footer-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  width: 50px; /* Adjust size as needed */
+  margin-right: 10px;
+}
+
+
+
+@keyframes glitter {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+
+h4,
+p,
+span {
+  margin: 5px 0;
+  color: white; /* Change text color to white */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  color: white; /* Change text color to white */
+}
+
+.btn-floating {
+  margin-right: 10px;
+  background-color: #110e0e59; /* Light gray background color */
+  color: #e8edf1; /* Dark gray color */
+  border-color: #070b0f; /* Light gray border color */
+  border-radius: 50%; /* Round shape */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.btn-floating:hover {
+  background-color: #f08080; /* Light red background color for hover */
+  color: #fff; /* White color for hover */
+  border-color: #f08080; /* Light red border color for hover */
+}
+
+.location-container {
+  display: flex;
+  align-items: middle;
+  color: #050a06;
+  
+}
+
+.location-container i {
+  font-size: 24px; /* Adjust the size of the icon as needed */
+  margin-right: 10px;
+  color: green; /* Change the color of the icon to green */
+}
+
+
+.location-container span {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3px; /* Adjust the margin-top for better alignment */
+  color: white; /* Change text color to white */
+}
+
+.location-container span h3 {
+  margin: 0;
+}
+ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin-bottom: 10px; /* Add space between list items */
+}
+
+ul li a {
+  color: #050a06; /* Dark gray color for links */
+}
+
+ul li a:hover {
+  color: green; /* Green color for hover */
+}
+.useful-links-heading {
+  position: relative;
+  margin-bottom: 10px; /* Add margin to separate from links */
+  color: white; /* Change text color to white */
+}
+
+.useful-links-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -3px; /* Adjust the distance of the line from the heading */
+  left: 0;
+  width: 40%;
+  height: 2px; /* Height of the line */
+  background-color: green; /* Green color for the line */
+  border-radius: 5px; /* Optional: Add some border radius to round the corners */
+}
+
+.useful-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.useful-links li {
+  margin-bottom: 10px;
+}
+
+.useful-links li a {
+  color: #f3faf5;
+}
+
+.useful-links li a:hover {
+  color: green;
+}
+.email-box {
+  display: flex;
+  align-items: center;
+  background-color: green;
+  padding: 5px 2px;
+  border-radius: 5px;
+}
+
+.email-box input {
+  border: none;
+  outline: none;
+  background-color: white;
+  color: white;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.email-icon {
+  color: white;
+  font-size: 20px;
+}
+/* Footer.css */
+
+/* Style for the form */
+form {
+  background-color: rgba(49, 43, 43, 0.658);
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Style for the form input */
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #050303;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: white; /* Change text color to white */
+}
+
+.send-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth color change */
+}
+
+.send-button:hover {
+  background-color: red; /* Change background color to red on hover */
+}
+
+.send-button:active {
+  background-color: red; /* Change background color to red when button is clicked */
+}
+

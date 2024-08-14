@@ -1,0 +1,62 @@
+.view-profile-main {
+  width: 100%;
+  .user-id-conatainer {
+    border-radius: 12px;
+    height: 200px;
+    background-color: rgba(28, 202, 37, 0.781);
+    padding: 20px 30px;
+    gap: 24px;
+    .left {
+      position: relative;
+      .dp {
+        width: 147.864px;
+        height: 148px;
+        position: relative;
+        border-radius: 50%;
+        border: 1px solid #000;
+        filter: drop-shadow(0px 3.289px 3.289px rgba(0, 0, 0, 0.25));
+      }
+      .camera-icon {
+        position: absolute;
+        bottom: 5%;
+        right: 3%;
+        cursor: pointer;
+      }
+    }
+    .right {
+      justify-content: center;
+      p {
+        color: black;
+        margin-top: -10px;
+      }
+    }
+  }
+  .bottom {
+    .bottom-inner {
+      justify-content: space-between;
+    }
+    .user-input {
+      max-width: 100%;
+      width: 100%;
+      height: 50px;
+      border: 2px solid green;
+      border-radius: 10px;
+      padding: 10px;
+      color: black;
+      &:focus {
+        border: 2px solid green;
+        outline: none;
+      }
+    }
+    textarea {
+      height: 100px !important;
+    }
+    button {
+      background-color: rgba(28, 202, 37, 0.781);
+      width: 100%;
+      height: 45px;
+      border-radius: 10px;
+      border: none;
+    }
+  }
+}

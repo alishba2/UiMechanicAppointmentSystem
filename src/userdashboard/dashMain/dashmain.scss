@@ -1,0 +1,28 @@
+.dashboard-user-main {
+  min-height: 100vh;
+  height: 100%;
+  .left-div {
+    align-items: center;
+    min-height: 100vh;
+    max-width: 300px;
+    width: 100%;
+    background-color: rgba(28, 202, 37, 0.781);
+    border-radius: 10px;
+    padding: 40px;
+    h5 {
+      cursor: pointer;
+      width: 260px;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+    .active {
+      font-weight: 600;
+      background-color: white;
+    }
+  }
+  .right-div {
+    padding: 30px 80px;
+    max-width: 100%;
+    width: 100%;
+  }
+}

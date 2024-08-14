@@ -1,0 +1,91 @@
+/* Accessories.css */
+.accessories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 150px;
+  }
+  
+  .blue-card {
+    width: 130vh;
+    height: 70vh;
+    background-color: rgb(242, 242, 247);
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.699);  /* Add margin to create space between the paragraph and the blue card */
+  }
+  
+  h1 {
+    margin: 0; /* Remove default margin of heading */
+    font-size: 50px;
+    text-shadow: 2px 2px 4px red;
+    margin-top: 10px;
+  }
+  
+  p {
+    margin: 0;
+    color: black;
+    margin-top: 10px; /* Remove default margin of paragraph */
+  }
+  
+  .card-row-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-1,
+  .card-2,
+  .card-3,
+  .card-4,
+  .card-5,
+  .card-6,
+  .card-7,
+  .card-8,
+  .card-9,
+  .card-10 {
+    width: 150px; /* Increase the width of the cards */
+    height: 150px; /* Increase the height of the cards */
+    background-color: white;
+    margin: 10px; /* Add margin between cards */
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Add a smooth transition for the background color, border color, and box-shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.699); /* Add a black shadow to the cards */
+  }
+  
+  .card-1 img,
+  .card-2 img,
+  .card-3 img,
+  .card-4 img,
+  .card-5 img,
+  .card-6 img,
+  .card-7 img,
+  .card-8 img,
+  .card-9 img,
+  .card-10 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .card-1 img:hover,
+  .card-2 img:hover,
+  .card-3 img:hover,
+  .card-4 img:hover,
+  .card-5 img:hover,
+  .card-6 img:hover,
+  .card-7 img:hover,
+  .card-8 img:hover,
+  .card-9 img:hover,
+  .card-10 img:hover {
+    background-color: white;
+    border: 8px solid darkgreen;
+  }
+  

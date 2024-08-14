@@ -1,0 +1,127 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    color: black;
+    background-color: #f5f5f5; // Light gray background for better contrast
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.mechanicList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff; // White background for cards
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    color: black;
+    overflow: hidden;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.details {
+    text-align: left;
+    color: black; // Ensure details text is black
+}
+
+.username {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.skillsContainer {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.skillsTitle {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.skill {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #007BFF; // Blue background for skills
+    color: #fff;
+    font-size: 14px;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 18px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+
+.card-custom {
+    height: 400px;
+    overflow: hidden;
+    /* Ensures content doesn't overflow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-custom .card-body {
+    flex-grow: 1;
+    /* Allows the card body to take up available space */
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    .card-text {
+        color: #007BFF;
+    }
+}
+
+.card-custom img {
+    object-fit: cover;
+}
+
+.card-text {
+    color: #007BFF;
+}

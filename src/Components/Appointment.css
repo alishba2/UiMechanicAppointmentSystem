@@ -1,0 +1,81 @@
+.appointment-page {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-image: linear-gradient(to bottom, #10cc48, #0e0606);
+    padding: 20px;
+    color: white;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    
+  }
+  .sidebar ul  :hover{
+    color: rgb(8, 236, 65);
+  }
+
+
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    color: rgba(255, 255, 255, 0.733);
+    text-decoration: none;
+    display: flex;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  .appointment-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0c0; /* Optional background color */
+  }
+  
+  h5 {
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #363131e7;
+  }
+  
+  .mechanic-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .mechanic-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    flex: 1;
+    max-width: 200px; /* Adjust as needed */
+  }
+  
+  .mechanic-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .mechanic-card.selected {
+    background-color: #d1ffd1; /* Light green background for selected card */
+  }
+  
+  .mechanic-card h2 {
+    margin-top: 0;
+  }
+  
+  .mechanic-card p {
+    margin: 5px 0;
+  }
+  

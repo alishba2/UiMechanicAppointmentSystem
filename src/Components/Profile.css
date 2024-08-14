@@ -1,0 +1,31 @@
+/* profile.css */
+.profile-container {
+    margin-top: 20px !important;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 5px solid #0f0f0f;
+    border-radius: 20px;
+    
+  }
+  form {
+    /* CSS */
+background: linear-gradient( green, white);
+
+    padding: 30px;
+    border-radius: 20px;
+    border: 5px solid #0f0f0f;
+    margin-top: 20px;
+  }
+
+  .profile-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: linear-gradient(green rgba(12, 187, 38, 0.664)
+    );
+   
+  }
+  
+  .btn{
+    margin: 1rem 0px;
+  }
