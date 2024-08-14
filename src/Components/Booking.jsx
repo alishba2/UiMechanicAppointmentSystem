@@ -13,8 +13,7 @@ import { Navigate } from 'react-router-dom';
 function Booking() {
   const location = useLocation();
   const { mechanic } = location.state || {}; // Access the passed state (mechanic)
-  // const history = useHistory();
-  // const { navigate } = Navigate();
+
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
