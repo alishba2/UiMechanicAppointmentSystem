@@ -21,6 +21,7 @@ import DashboardUser from "./userdashboard/dashMain/dashmainPage";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthProvider } from "./Components/Context/appContext";
 import MechanicListing from "./userdashboard/dashMain/mechanicListing";
+import MechanicDetail from "./userdashboard/dashMain/mechanicDetail";
 
 import CustomerDashboard from "./userdashboard/dashMain/customerDashboard";
 
@@ -29,7 +30,7 @@ function App() {
     <>
       {" "}
       <AuthProvider>
-        <BrowserRouter>a
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
@@ -51,9 +52,8 @@ function App() {
             {/* dashboard-User-Routes */}
             <Route path="/dashboard-user" element={<DashboardUser />} />
             <Route path="/mechanics" element={<MechanicListing />} />
+            <Route path="/mechanics-detail" element={<MechanicDetail />} />
             <Route path="/customerDashboard" element={<CustomerDashboard />} />
-
-
           </Routes>
         </BrowserRouter>
       </AuthProvider>

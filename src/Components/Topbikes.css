@@ -4,9 +4,8 @@
   margin-top: 60px;
   align-items: center;
   height: 80vh; /* Increase the height to 80vh */
-  width: 90vw; /* Decrease the width to 90vw */
+  width: 100%; /* Decrease the width to 90vw */
   background-color: rgb(255, 251, 251);
- 
 }
 
 .card {
@@ -102,7 +101,7 @@
 .card-arrows {
   position: absolute;
   top: 50%;
-  width: 90%;
+  width: 94%;
   display: flex;
   justify-content: space-between;
   padding: 0 1px;

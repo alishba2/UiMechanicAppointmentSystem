@@ -76,51 +76,58 @@ const Appointment = ({ user }) => {
   };
 
   return (
-    <div className="appointment-main-div container mt-5">
+    <div className="appointment-main-div  mt-5">
       <h2 className="text-center mb-4">Appointments for Mechanic</h2>
-      <table className="table table-striped">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Date</th>
-            <th scope="col">Time Slot</th>
-            <th scope="col">Service</th>
-            <th scope="col">Actions/Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment, index) => (
-            <tr key={appointment._id}>
-              <th scope="row">{index + 1}</th>
-              <td>{usernames[appointment.userId] || "Loading..."}</td>
-              <td>{new Date(appointment.date).toLocaleDateString()}</td>
-              <td>{appointment.timeSlot}</td>
-              <td>{appointment.service}</td>
-              <td>
-                {appointment.status === "Accepted" || appointment.status === "Rejected" || appointment.status === "Cancelled" ? (
-                  <span>{appointment.status}</span>
-                ) : (
-                  <>
-                    <button
-                      className="btn btn-success mr-2"
-                      onClick={() => handleActionClick(appointment, "accept")}
-                    >
-                      Accept
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleActionClick(appointment, "reject")}
-                    >
-                      Reject
-                    </button>
-                  </>
-                )}
-              </td>
+      <div className="appoit-table">
+        <table
+          className="table  w-100"
+          style={{ width: "100%", maxWidth: "1200px" }}
+        >
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time Slot</th>
+              <th scope="col">Service</th>
+              <th scope="col">Actions/Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {appointments.map((appointment, index) => (
+              <tr key={appointment._id}>
+                <th scope="row">{index + 1}</th>
+                <td>{usernames[appointment.userId] || "Loading..."}</td>
+                <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                <td>{appointment.timeSlot}</td>
+                <td>{appointment.service}</td>
+                <td>
+                  {appointment.status === "Accepted" ||
+                  appointment.status === "Rejected" ||
+                  appointment.status === "Cancelled" ? (
+                    <span>{appointment.status}</span>
+                  ) : (
+                    <>
+                      <button
+                        className="btn btn-success mr-2"
+                        onClick={() => handleActionClick(appointment, "accept")}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="btn btn-danger mx-3"
+                        onClick={() => handleActionClick(appointment, "reject")}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Modal for confirmation */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -142,10 +149,18 @@ const Appointment = ({ user }) => {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowModal(false)}
+            style={{ background: "red" }}
+          >
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmAction}>
+          <Button
+            variant="primary"
+            onClick={handleConfirmAction}
+            style={{ marginLeft: "20px", background: "green" }}
+          >
             Confirm
           </Button>
         </Modal.Footer>

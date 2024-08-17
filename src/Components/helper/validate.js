@@ -49,7 +49,7 @@ else if(values.password.length<4){
 function usernameVerify(error={},values){
     if(!values.username){
         error.username=toast.error("username required");
-    }else if(values.username.includes("")){
+    }else if(values.username?.includes("")){
         error.username=toast.error('invalid username')
     }
     return error;
@@ -57,7 +57,7 @@ function usernameVerify(error={},values){
 function emailVerify(error={},values){
     if(!values.email){
         error.email=toast.error("email required");
-    }else if(values.email.includes("")){
+    }else if(values.email?.includes("")){
         error.username=toast.error('wrong email')
     }
     return error;

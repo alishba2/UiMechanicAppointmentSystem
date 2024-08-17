@@ -1,3 +1,14 @@
-.appointment-main-div{
-    
+.appointment-main-div {
+}
+.appoit-table {
+  width: 100%;
+  table {
+    max-width: 1300px !important;
+    width: 100% !important;
+    border: 1px solid green !important;
+    thead {
+      --bs-table-bg: rgba(28, 202, 37, 0.781) !important;
+      border-radius: 10px !important;
+    }
+  }
 }

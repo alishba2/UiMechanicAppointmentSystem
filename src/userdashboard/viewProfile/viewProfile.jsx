@@ -49,8 +49,8 @@ const ViewProfile = () => {
   useEffect(() => {
     if (user) {
       // Parse skills and availableTimeSlots from comma-separated strings
-      const parsedSkills = user?.skills ? user?.skills[0].split(",") : [];
-      const parsedTimeSlots = user?.availableTimeSlots ? user?.availableTimeSlots.split(",") : [];
+      const parsedSkills = user?.skills ? user?.skills[0]?.split(",") : [];
+      const parsedTimeSlots = user?.availableTimeSlots ? user?.availableTimeSlots?.split(",") : [];
 
       setFormValues({
         username: user.username || "",
@@ -76,18 +76,24 @@ const ViewProfile = () => {
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
+
     setFormValues((prevValues) => {
       const updatedValues = { ...prevValues };
+
       if (name === "skills") {
+        const currentSkills = Array.isArray(prevValues?.skills) ? prevValues.skills : [];
         updatedValues.skills = checked
-          ? [...prevValues.skills, value]
-          : prevValues.skills.filter((skill) => skill !== value);
+          ? [...currentSkills, value]
+          : currentSkills.filter((skill) => skill !== value);
       }
+
       if (name === "availableTimeSlots") {
+        const currentSlots = Array.isArray(prevValues?.availableTimeSlots) ? prevValues.availableTimeSlots : [];
         updatedValues.availableTimeSlots = checked
-          ? [...prevValues.availableTimeSlots, value]
-          : prevValues.availableTimeSlots.filter((slot) => slot !== value);
+          ? [...currentSlots, value]
+          : currentSlots.filter((slot) => slot !== value);
       }
+
       return updatedValues;
     });
   };
@@ -105,19 +111,20 @@ const ViewProfile = () => {
       const userId = user._id;
       const formData = new FormData();
 
-      // Append all form values to formData
+      // Append common form values to formData
       formData.append("userId", userId);
       formData.append("username", formValues.username);
       formData.append("email", formValues.email);
       formData.append("contactNo", formValues.contactNo);
       formData.append("address", formValues.address);
 
-      // Append skills and availableTimeSlots as JSON arrays
-      formData.append("skills", formValues.skills.join(","));
-      formData.append("availableTimeSlots", formValues.availableTimeSlots.join(","));
-
-      formData.append("hourlyRating", formValues.hourlyRating);
-      formData.append("yrsOfExperience", formValues.yrsOfExperience);
+      // If the user is a mechanic, append mechanic-specific fields
+      if (user.role === "mechanic") {
+        formData.append("skills", formValues.skills.join(","));
+        formData.append("availableTimeSlots", formValues.availableTimeSlots.join(","));
+        formData.append("hourlyRating", formValues.hourlyRating);
+        formData.append("yrsOfExperience", formValues.yrsOfExperience);
+      }
 
       // Append the profile image if it has been changed
       if (dpImage && dpImage !== user.profileImage) {
@@ -228,7 +235,7 @@ const ViewProfile = () => {
                       type="checkbox"
                       name="skills"
                       value={skill}
-                      checked={formValues.skills.includes(skill)} // Check if the skill is in the user's data
+                      checked={formValues?.skills?.includes(skill)} // Check if the skill is in the user's data
                       onChange={handleCheckboxChange}
                     />
                     <label>{skill}</label>
