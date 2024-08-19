@@ -166,5 +166,4 @@ const MechanicDetailPage = () => {
     </>
   );
 };
-
 export default MechanicDetailPage;
