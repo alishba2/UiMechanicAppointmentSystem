@@ -22,52 +22,55 @@ const MechanicDetailPage = () => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
 
-  // useEffect(() => {
-  //   const fetchMechanicDetails = async () => {
-  //     try {
-  //       const response = await fetch(`http://localhost:3001/mechanics/${id}`);
-  //       const data = await response.json();
-  //       setMechanic(data.user);
-  //       const reviewsResponse = await fetch(
-  //         `http://localhost:3001/mechanics/${id}/reviews`
-  //       );
-  //       const reviewsData = await reviewsResponse.json();
-  //       setReviews(reviewsData.reviews);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setError("Failed to fetch mechanic details. Please try again later.");
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchMechanicDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/mechanics/${id}`);
+        const data = await response.json();
+        setMechanic(data.mechanic);
+        const reviewsResponse = await fetch(
+          `http://localhost:3001/mechanics/${id}/reviews`
+        );
+        const reviewsData = await reviewsResponse.json();
+        setReviews(reviewsData.reviews);
+        setLoading(false);
+      } catch (error) {
+        setError("Failed to fetch mechanic details. Please try again later.");
+        setLoading(false);
+      }
+    };
 
-  //   fetchMechanicDetails();
-  // }, [id]);
+    fetchMechanicDetails();
+  }, [id]);
 
-  // const handleSubmitReview = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:3001/mechanics/${id}/reviews`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ rating, comment }),
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setReviews((prevReviews) => [...prevReviews, data.review]);
-  //       setRating(5);
-  //       setComment("");
-  //     } else {
-  //       setError(data.message || "Failed to add review. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     setError("Failed to add review. Please try again.");
-  //   }
-  // };
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:3001/mechanics/${id}/reviews`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ rating, comment }),
+        }
+      );
+      const data = await response.json();
+      console.log("Response Data:", data);
+      if (response.ok) {
+        setReviews((prevReviews) => [...prevReviews, data.review]);
+        setRating(5);
+        setComment("");
+      } else {
+        setError(data.message || "Failed to add review. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submit Review Error:", error);
+      setError("Failed to add review. Please try again.");
+    }
+  };
 
   return (
     <>
@@ -85,7 +88,7 @@ const MechanicDetailPage = () => {
             <Alert variant="danger">{error}</Alert>
           </Row>
         )}
-        {/* {mechanic && (
+        {mechanic && (
           <Row>
             <Col>
               <Card>
@@ -96,10 +99,10 @@ const MechanicDetailPage = () => {
                 />
                 <Card.Body>
                   <Card.Title>{mechanic.username}</Card.Title>
-                  <Card.Text>Skills: {mechanic.skills.join(", ")}</Card.Text>
+                  <Card.Text>Skills: {mechanic.skills?.join(", ")}</Card.Text>
                   <Card.Text>Hourly Rate: ${mechanic.hourlyRate}</Card.Text>
                   <Card.Text>
-                    Availability: {mechanic.availableTimeSlot}
+                    Availability: {mechanic.availableTimeSlots}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -146,62 +149,7 @@ const MechanicDetailPage = () => {
               )}
             </Col>
           </Row>
-        )} */}
-
-        <Row>
-          <Col>
-            <Card>
-              <Card.Img variant="top" src={dp} alt="{mechanic.username}" />
-              <Card.Body>
-                <Card.Title>Arshia</Card.Title>
-                <Card.Text>Skills: </Card.Text>
-                <Card.Text>Hourly Rate: $</Card.Text>
-                <Card.Text>Availability:</Card.Text>
-              </Card.Body>
-            </Card>
-            <Form>
-              <Form.Group controlId="rating">
-                <Form.Label>Rating</Form.Label>
-                <Form.Control
-                  type="number"
-                  min="1"
-                  max="5"
-                  value={rating}
-                  onChange={(e) => setRating(parseInt(e.target.value))}
-                />
-              </Form.Group>
-              <Form.Group controlId="comment">
-                <Form.Label>Comment</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit Review
-              </Button>
-            </Form>
-            <h3>Reviews</h3>
-            {reviews.length > 0 ? (
-              reviews.map((review) => (
-                <Card key={review._id} className="mb-3">
-                  <Card.Body>
-                    <Card.Text>
-                      <strong>Rating:</strong> {review.rating}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Comment:</strong> {review.comment}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              ))
-            ) : (
-              <p>No reviews yet.</p>
-            )}
-          </Col>
-        </Row>
+        )}
       </Container>
     </>
   );
