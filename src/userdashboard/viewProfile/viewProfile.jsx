@@ -159,7 +159,7 @@ const ViewProfile = () => {
         <div className="left">
           {dpImage ? (
             <img
-              src={dpImage instanceof File ? URL.createObjectURL(dpImage) : `http://localhost:3001/${dpImage}`}
+              src={ dpImage instanceof File ? URL.createObjectURL(dpImage) : `http://localhost:3001/${dpImage} `}
               alt="Profile"
               className="dp"
             />

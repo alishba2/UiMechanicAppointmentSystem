@@ -24,6 +24,8 @@ import MechanicListing from "./userdashboard/dashMain/mechanicListing";
 import MechanicDetail from "./userdashboard/dashMain/mechanicDetail";
 
 import CustomerDashboard from "./userdashboard/dashMain/customerDashboard";
+import AdminDashboard from "./Components/adminDashboard/dashmain/dashmain";
+import Forgetpassword from "./Components/forgetpassword";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forget-password" element={<Forgetpassword />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/ServicesPage" element={<ServicesPage />} />
@@ -54,6 +57,7 @@ function App() {
             <Route path="/mechanics" element={<MechanicListing />} />
             <Route path="/mechanics-detail" element={<MechanicDetail />} />
             <Route path="/customerDashboard" element={<CustomerDashboard />} />
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

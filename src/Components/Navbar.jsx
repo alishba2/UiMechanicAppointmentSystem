@@ -55,12 +55,12 @@ const Navbar = () => {
     <>
       <div className="container">
         <div className="searchbox">
-          <img src={img2} alt="Logo" className="logo" />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src={img2} alt="Logo" className="logo mx-4" />
+          {/*   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <FaSearch />
           &nbsp; &nbsp;
           <input type="text" placeholder="Search" />
-          &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; */}
           {isLoggedIn ? (
             <div className="user-menu">
               <p

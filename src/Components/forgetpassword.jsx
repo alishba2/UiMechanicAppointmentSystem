@@ -1,20 +1,18 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
 import { signIn } from "../Api/api";
 import { notifyError, notifySuccess } from "../utils/helpers";
-import { AuthContext } from "./Context/appContext";
+import { AuthContext, AuthProvider } from "./Context/appContext";
 
-export default function Login() {
+const Forgetpassword = () => {
   const [file, setFile] = useState();
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // Admin credentials
-  const ADMIN_EMAIL = "admin123@gmail.com";
-  const ADMIN_PASSWORD = "admin123";
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -25,18 +23,6 @@ export default function Login() {
     onSubmit: async (values) => {
       values = await Object.assign(values, { Profile: file || "" });
       console.log(values);
-
-      // Check for admin login
-      if (values.email === ADMIN_EMAIL && values.password === ADMIN_PASSWORD) {
-        // Admin login successful
-        localStorage.setItem("role", "admin");
-        localStorage.setItem("email", ADMIN_EMAIL);
-        notifySuccess("Admin login successfully", 1000);
-        navigate("/adminDashboard");
-        return;
-      }
-
-      // Otherwise, use the signIn API
       signIn(values.email, values.password)
         .then((res) => {
           const token = res.data.token;
@@ -46,7 +32,7 @@ export default function Login() {
 
           localStorage.setItem("role", res.data.user.role);
           localStorage.setItem("userId", res.data.user?.id);
-          notifySuccess("Login successfully", 1000);
+          notifySuccess("login Successfully", 1000);
           navigate("/");
           window.location.reload();
         })
@@ -134,7 +120,7 @@ export default function Login() {
   return (
     <div
       className="container mx-auto"
-      style={{
+      styleName={{
         marginTop: "3%",
         height: "770px",
         width: "600px",
@@ -147,7 +133,7 @@ export default function Login() {
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="flex justify-center items-center h-screen">
-        <div>
+        <div styleName={{ width: "45%" }}>
           <div className="tittle flex flex-col items-center">
             <span className="py-4 text-xl w-2/3 text-center text-gray-5">
               Happy to join you
@@ -167,7 +153,7 @@ export default function Login() {
               style={{ padding: "0px 10px 15px 10px", textAlign: "center" }}
               className="text-5xl font-bold text-green-500"
             >
-              Login
+              Forget Password
             </h4>
             <div
               className="text-box flex flex-col items-center gap-6"
@@ -179,24 +165,24 @@ export default function Login() {
               }}
             >
               <input
-                {...formik.getFieldProps("email")}
+                {...formik.getFieldProps("password")}
                 style={textboxStyle}
-                type="text"
-                placeholder="Email"
+                type="password"
+                placeholder="New Password"
               />
               <input
                 {...formik.getFieldProps("password")}
                 style={textboxStyle}
                 type="password"
-                placeholder="Password"
+                placeholder="Confirm Password"
               />
               <span
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  navigate("/forget-password");
+                  navigate("/login");
                 }}
               >
-                Forget Password?
+                Signin
               </span>
               <div
                 style={{
@@ -205,17 +191,7 @@ export default function Login() {
                   alignSelf: "center",
                 }}
               >
-                <button
-                  style={{
-                    ...btnStyle,
-                    ":hover": hoverStyle,
-                    ":focus": focusStyle,
-                    ":active": activeStyle,
-                  }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+                <button style={btnStyle}>Submit</button>
               </div>
             </div>
           </form>
@@ -223,4 +199,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Forgetpassword;
