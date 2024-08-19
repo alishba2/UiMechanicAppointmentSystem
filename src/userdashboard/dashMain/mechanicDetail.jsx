@@ -96,6 +96,7 @@ const MechanicDetailPage = () => {
                   variant="top"
                   src={mechanic.profileImage || dp}
                   alt={mechanic.username}
+                  style={{ width: "200px", height: "200px", margin: "auto" }}
                 />
                 <Card.Body>
                   <Card.Title>{mechanic.username}</Card.Title>
