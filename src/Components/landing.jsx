@@ -17,7 +17,7 @@ export default function Landing() {
       <Navbar />
       <Homepage />
       <br></br>
-      <Topbikes/>
+      {/* <Topbikes/> */}
       <br></br>
       <br></br>
       <br></br>

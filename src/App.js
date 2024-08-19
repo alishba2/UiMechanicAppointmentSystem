@@ -55,7 +55,7 @@ function App() {
             {/* dashboard-User-Routes */}
             <Route path="/dashboard-user" element={<DashboardUser />} />
             <Route path="/mechanics" element={<MechanicListing />} />
-            <Route path="/mechanics-detail" element={<MechanicDetail />} />
+            <Route path="/mechanics/:id" element={<MechanicDetail />} />
             <Route path="/customerDashboard" element={<CustomerDashboard />} />
             <Route path="/adminDashboard" element={<AdminDashboard />} />
           </Routes>

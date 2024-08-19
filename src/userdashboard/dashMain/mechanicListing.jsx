@@ -147,7 +147,7 @@ export default function MechanicListing() {
                     >
                       Book Appointment
                     </Button>
-                    {/* <Button
+                    <Button
                       style={{
                         width: "200px",
                         backgroundColor: "white",
@@ -156,11 +156,11 @@ export default function MechanicListing() {
                         marginTop: "-5px",
                       }}
                       onClick={() => {
-                        navigate("/mechanics-detail");
+                        navigate(`/mechanics/${mechanic._id}`);
                       }}
                     >
                       See Detail
-                    </Button> */}
+                    </Button>
                   </Card.Body>
                 </Card>
               </div>
