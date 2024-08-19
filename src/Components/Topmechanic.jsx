@@ -1,27 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Topmechanic.css"; // Update the import to match your CSS file
-import b1 from "../images/acc1.jpg"; // Update the image imports
-import b2 from "../images/acc2.jpg";
-import b3 from "../images/acc3.jpg";
-// Add more images if needed
+import dp from "../Components/assets/dp.png"; // Default image for mechanics without a profile image
+import { useNavigate } from "react-router-dom";
 
 function Topmechanic({ title }) {
+  const navigate = useNavigate();
   const [currentCard, setCurrentCard] = useState(0);
-  const totalCards = 10;
+  const [mechanics, setMechanics] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const cardsPerPage = 1;
 
-  const images = [b1, b2, b3]; // Add more images to match your imports
-  const names = [
-    "Mechanic 1",
-    "Mechanic 2",
-    "Mechanic 3",
-    // Add more names if needed
-  ];
+  useEffect(() => {
+    fetch("http://localhost:3001/mechanics")
+      .then((response) => response.json())
+      .then((data) => {
+        const parsedMechanics = data.mechanics.map((mechanic) => ({
+          ...mechanic,
+        }));
+        setMechanics(parsedMechanics);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching mechanics:", error);
+        setError("Failed to fetch mechanics. Please try again later.");
+        setLoading(false);
+      });
+  }, []);
+
+  const totalCards = mechanics.length;
 
   const handlePrevCard = () => {
     setCurrentCard((prevCard) =>
       prevCard === 0 ? totalCards - cardsPerPage : prevCard - 1
     );
+  };
+  const handleSetAppointment = (mechanic) => {
+    navigate("/booking", { state: { mechanic } });
   };
 
   const handleNextCard = () => {
@@ -35,10 +50,18 @@ function Topmechanic({ title }) {
     // Add your navigation logic here
   };
 
-  const handleViewAdd = (index) => {
-    console.log(`View Add clicked for card ${index}`);
+  const handleViewAdd = (mechanic) => {
+    console.log(`View Add clicked for ${mechanic.username}`);
     // Add your logic to handle viewing the ad
   };
+
+  if (loading) {
+    return <div>Loading mechanics...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="topmechanic-container">
@@ -47,7 +70,8 @@ function Topmechanic({ title }) {
           <h2>Top Mechanics</h2>
           <div className="topmechanic-inner-card-row">
             {Array.from({ length: cardsPerPage }).map((_, index) => {
-              const cardIndex = currentCard + index;
+              const cardIndex = (currentCard + index) % totalCards;
+              const mechanic = mechanics[cardIndex];
               return (
                 <div
                   key={index}
@@ -58,31 +82,31 @@ function Topmechanic({ title }) {
                 >
                   <div className="topmechanic-inner-card-image">
                     <img
-                      src={images[cardIndex % images.length]}
-                      alt={`Mechanic ${cardIndex + 1}`}
+                      src={mechanic.profileImage || dp}
+                      alt={`Mechanic ${mechanic.username}`}
                     />
                   </div>
                   <div className="topmechanic-inner-card-text">
-                    <div className="mechanic-name">
-                      {names[cardIndex % names.length]}
-                    </div>
+                    <div className="mechanic-name">{mechanic.username}</div>
                     <div className="star-rating">
                       &#9733;&#9733;&#9733;&#9733;&#9734;
                     </div>
-                    <div className="price">Starting from PKR 2000</div>
+                    <div className="price">
+                      Starting from ${mechanic.hourlyRating}
+                    </div>
                   </div>
                   <button
                     className="topmechanic-view-add-button semi-round"
-                    onClick={() => handleViewAdd(cardIndex)}
+                    onClick={() => handleSetAppointment(mechanic)}
                   >
-                    View Profile
+                    Book Appointment
                   </button>
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="topmechanic-card-arrows" >
+        <div className="topmechanic-card-arrows">
           <button className="topmechanic-left-arrow" onClick={handlePrevCard}>
             &lt;
           </button>

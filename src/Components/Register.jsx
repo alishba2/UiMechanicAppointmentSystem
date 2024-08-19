@@ -1,10 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-
 import { useFormik } from "formik";
-import { Dropdown } from "bootstrap";
 import { signUp } from "../Api/api";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess, notifyError } from "../utils/helpers";
@@ -13,11 +10,34 @@ export default function Register() {
   const navigate = useNavigate();
   const [file, setFile] = useState();
   const [selectedRole, setSelectedRole] = useState("mechanic"); // Default role
+
   const handleRoleChange = (e) => {
     setSelectedRole(e.target.value);
     console.log(e.target.value);
     setFile(e.target.value);
   };
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Enter email";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!values.username) {
+      errors.username = "Enter username";
+    }
+
+    if (!values.password) {
+      errors.password = "Enter password";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    return errors;
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -26,6 +46,7 @@ export default function Register() {
     },
     validateOnBlur: false,
     validateOnChange: false,
+    validate,
     onSubmit: async (values) => {
       values = { ...values, role: selectedRole }; // Add the role to the form values
       console.log(values);
@@ -119,7 +140,7 @@ export default function Register() {
   return (
     <div
       className="container mx-auto"
-      styleName={{
+      style={{
         marginTop: "3%",
         height: "770px",
         width: "600px",
@@ -132,7 +153,7 @@ export default function Register() {
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="flex justify-center items-center h-screen">
-        <div styleName={{ width: "45%" }}>
+        <div>
           <div className="tittle flex flex-col items-center">
             <span className="py-4 text-xl w-2/3 text-center text-gray-5">
               Happy to join you
@@ -168,18 +189,39 @@ export default function Register() {
                 type="text"
                 placeholder="Email"
               />
+              {formik.errors.email && formik.touched.email && (
+                <p
+                  style={{ color: "red", fontSize: "14px", marginTop: "-15px" }}
+                >
+                  {formik.errors.email}
+                </p>
+              )}
               <input
                 {...formik.getFieldProps("username")}
                 style={textboxStyle}
                 type="text"
                 placeholder="Username"
               />
+              {formik.errors.username && formik.touched.username && (
+                <p
+                  style={{ color: "red", fontSize: "14px", marginTop: "-15px" }}
+                >
+                  {formik.errors.username}
+                </p>
+              )}
               <input
                 {...formik.getFieldProps("password")}
                 style={textboxStyle}
-                type="text"
+                type="password"
                 placeholder="Password"
               />
+              {formik.errors.password && formik.touched.password && (
+                <p
+                  style={{ color: "red", fontSize: "14px", marginTop: "-15px" }}
+                >
+                  {formik.errors.password}
+                </p>
+              )}
               <div
                 style={{
                   display: "flex",

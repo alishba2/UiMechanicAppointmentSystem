@@ -124,12 +124,12 @@ const Navbar = () => {
             <li>
               <Link to="/aboutus">About Us</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/video">Video</Link>
             </li>
             <li>
               <Link to="/accessories">Accessories</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/faqs">FAQs</Link>
             </li>

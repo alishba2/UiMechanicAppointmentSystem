@@ -22,6 +22,20 @@ export default function Login() {
     },
     validateOnBlur: false,
     validateOnChange: false,
+    validate: (values) => {
+      const errors = {};
+      if (!values.email) {
+        errors.email = "Enter email";
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      ) {
+        errors.email = "Invalid email address";
+      }
+      if (!values.password) {
+        errors.password = "Enter password";
+      }
+      return errors;
+    },
     onSubmit: async (values) => {
       values = await Object.assign(values, { Profile: file || "" });
       console.log(values);
@@ -184,12 +198,26 @@ export default function Login() {
                 type="text"
                 placeholder="Email"
               />
+              {formik.errors.email && formik.touched.email && (
+                <p
+                  style={{ color: "red", fontSize: "14px", marginTop: "-15px" }}
+                >
+                  {formik.errors.email}
+                </p>
+              )}
               <input
                 {...formik.getFieldProps("password")}
                 style={textboxStyle}
                 type="password"
                 placeholder="Password"
               />
+              {formik.errors.password && formik.touched.password && (
+                <p
+                  style={{ color: "red", fontSize: "14px", marginTop: "-15px" }}
+                >
+                  {formik.errors.password}
+                </p>
+              )}
               <span
                 style={{ cursor: "pointer" }}
                 onClick={() => {

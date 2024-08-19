@@ -6,7 +6,6 @@ import camera from "../../Components/assets/camera.png";
 import { notifyError, notifySuccess } from "../../utils/helpers";
 import { AuthContext } from "../../Components/Context/appContext";
 
-// Expanded skills and time slots options
 const skillsOptions = [
   "Plumbing",
   "Electrical",
@@ -19,7 +18,7 @@ const skillsOptions = [
   "Engine Overhaul",
   "Transmission Service",
   "Brake Repair",
-  "Other"
+  "Other",
 ];
 
 const timeSlotsOptions = [
@@ -29,12 +28,12 @@ const timeSlotsOptions = [
   "6 PM - 9 PM",
   "9 PM - 12 AM",
   "12 AM - 3 AM",
-  "3 AM - 6 AM"
+  "3 AM - 6 AM",
 ];
 
 const ViewProfile = () => {
   const { user } = useContext(AuthContext);
-  const [dpImage, setDpImage] = useState(null); // Change this to store the file instead of the URL
+  const [dpImage, setDpImage] = useState(null); // Initialize with null
   const [formValues, setFormValues] = useState({
     username: "",
     email: "",
@@ -48,9 +47,10 @@ const ViewProfile = () => {
 
   useEffect(() => {
     if (user) {
-      // Parse skills and availableTimeSlots from comma-separated strings
       const parsedSkills = user?.skills ? user?.skills[0]?.split(",") : [];
-      const parsedTimeSlots = user?.availableTimeSlots ? user?.availableTimeSlots?.split(",") : [];
+      const parsedTimeSlots = user?.availableTimeSlots
+        ? user?.availableTimeSlots?.split(",")
+        : [];
 
       setFormValues({
         username: user.username || "",
@@ -62,7 +62,13 @@ const ViewProfile = () => {
         hourlyRating: user.hourlyRating || "",
         yrsOfExperience: user.yrsOfExperience || "",
       });
-      setDpImage(user.profileImage ? user.profileImage : dp);
+
+      console.log(user, "user profile image");
+      if (user?.profileImage) {
+        setDpImage(`http://localhost:3001/${user.profileImage}`);
+      } else {
+        setDpImage(null);
+      }
     }
   }, [user]);
 
@@ -81,14 +87,18 @@ const ViewProfile = () => {
       const updatedValues = { ...prevValues };
 
       if (name === "skills") {
-        const currentSkills = Array.isArray(prevValues?.skills) ? prevValues.skills : [];
+        const currentSkills = Array.isArray(prevValues?.skills)
+          ? prevValues.skills
+          : [];
         updatedValues.skills = checked
           ? [...currentSkills, value]
           : currentSkills.filter((skill) => skill !== value);
       }
 
       if (name === "availableTimeSlots") {
-        const currentSlots = Array.isArray(prevValues?.availableTimeSlots) ? prevValues.availableTimeSlots : [];
+        const currentSlots = Array.isArray(prevValues?.availableTimeSlots)
+          ? prevValues.availableTimeSlots
+          : [];
         updatedValues.availableTimeSlots = checked
           ? [...currentSlots, value]
           : currentSlots.filter((slot) => slot !== value);
@@ -111,27 +121,26 @@ const ViewProfile = () => {
       const userId = user._id;
       const formData = new FormData();
 
-      // Append common form values to formData
       formData.append("userId", userId);
       formData.append("username", formValues.username);
       formData.append("email", formValues.email);
       formData.append("contactNo", formValues.contactNo);
       formData.append("address", formValues.address);
 
-      // If the user is a mechanic, append mechanic-specific fields
       if (user.role === "mechanic") {
         formData.append("skills", formValues.skills.join(","));
-        formData.append("availableTimeSlots", formValues.availableTimeSlots.join(","));
+        formData.append(
+          "availableTimeSlots",
+          formValues.availableTimeSlots.join(",")
+        );
         formData.append("hourlyRating", formValues.hourlyRating);
         formData.append("yrsOfExperience", formValues.yrsOfExperience);
       }
 
-      // Append the profile image if it has been changed
       if (dpImage && dpImage !== user.profileImage) {
         formData.append("profileImage", dpImage);
       }
 
-      // Send formData via axios
       const response = await axios.put(
         "http://localhost:3001/profile",
         formData,
@@ -148,6 +157,10 @@ const ViewProfile = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(dpImage, "dp Image");
+  }, [dpImage]);
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -157,19 +170,18 @@ const ViewProfile = () => {
       <h4 className="text-center">Edit Profile</h4>
       <div className="user-id-conatainer d-flex">
         <div className="left">
-          {dpImage ? (
-            <img
-              src={ dpImage instanceof File ? URL.createObjectURL(dpImage) : `http://localhost:3001/${dpImage} `}
-              alt="Profile"
-              className="dp"
-            />
-          ) : (
-            <img
-              src={dp}
-              alt="Profile"
-              className="dp"
-            />
-          )}
+          {/* <img
+            src={
+              dpImage
+                ? dpImage instanceof File
+                  ? URL.createObjectURL(dpImage)
+                  : dpImage
+                : dp
+            }
+            alt="Profile"
+            className="dp"
+          /> */}
+          <img src={dp} />
           <label htmlFor="file-upload" className="camera-icon cursor-pointer">
             <img src={camera} alt="Upload" />
           </label>
@@ -235,7 +247,7 @@ const ViewProfile = () => {
                       type="checkbox"
                       name="skills"
                       value={skill}
-                      checked={formValues?.skills?.includes(skill)} // Check if the skill is in the user's data
+                      checked={formValues?.skills?.includes(skill)}
                       onChange={handleCheckboxChange}
                     />
                     <label>{skill}</label>
