@@ -25,14 +25,22 @@ const MechanicDetailPage = () => {
   useEffect(() => {
     const fetchMechanicDetails = async () => {
       try {
+        console.log(id);
         const response = await fetch(`http://localhost:3001/mechanics/${id}`);
         const data = await response.json();
         setMechanic(data.mechanic);
-        const reviewsResponse = await fetch(
-          `http://localhost:3001/mechanics/${id}/reviews`
-        );
+
+        const reviewsResponse = await fetch(`http://localhost:3001/getReview`);
         const reviewsData = await reviewsResponse.json();
-        setReviews(reviewsData.reviews);
+        console.log(reviewsData, "review data");
+
+        // Filter reviews to include only those where userId._id matches the id parameter
+        const filteredReviews = reviewsData.filter(
+          (review) => review.userId && review.userId._id == id
+        );
+
+        console.log(filteredReviews, "filtered rreiews");
+        setReviews(filteredReviews);
         setLoading(false);
       } catch (error) {
         setError("Failed to fetch mechanic details. Please try again later.");
@@ -43,18 +51,21 @@ const MechanicDetailPage = () => {
     fetchMechanicDetails();
   }, [id]);
 
+
   const handleSubmitReview = async (e) => {
     e.preventDefault();
+    console.log(id, "id");
+    let userId = id;
     try {
       const response = await fetch(
-        `http://localhost:3001/mechanics/${id}/reviews`,
+        `http://localhost:3001/addReview`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          body: JSON.stringify({ rating, comment }),
+          body: JSON.stringify({ userId, rating, comment }),
         }
       );
       const data = await response.json();
@@ -132,7 +143,7 @@ const MechanicDetailPage = () => {
                 </Button>
               </Form>
               <h3>Reviews</h3>
-              {reviews.length > 0 ? (
+              {reviews?.length > 0 ? (
                 reviews.map((review) => (
                   <Card key={review._id} className="mb-3">
                     <Card.Body>
