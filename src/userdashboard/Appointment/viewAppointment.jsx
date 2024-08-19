@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./appointment.scss";
 import { Modal, Button, Form } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ViewAppointment({ user }) {
   const [appointments, setAppointments] = useState([]);
@@ -74,6 +76,7 @@ export default function ViewAppointment({ user }) {
             )
           );
           setShowRescheduleModal(false);
+          toast.success("Appointment rescheduled successfully!");
         })
         .catch((error) => {
           console.error(
@@ -101,6 +104,7 @@ export default function ViewAppointment({ user }) {
             )
           );
           setShowCancelModal(false);
+          toast.success("Appointment canceled successfully!");
         })
         .catch((error) => {
           console.error("There was an error canceling the appointment!", error);
@@ -110,6 +114,7 @@ export default function ViewAppointment({ user }) {
 
   return (
     <div className="container mt-5">
+      <ToastContainer />
       <h2 className="text-center mb-4">My Appointments</h2>
       <div className="appoit-table">
         <table className="table ">

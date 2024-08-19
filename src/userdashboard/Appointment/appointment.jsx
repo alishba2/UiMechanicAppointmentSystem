@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./appointment.scss";
 import { Modal, Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./appointment.scss";
 
 const Appointment = ({ user }) => {
   const [appointments, setAppointments] = useState([]);
@@ -65,22 +67,33 @@ const Appointment = ({ user }) => {
             )
           );
           setShowModal(false);
+          toast.success(
+            `Appointment successfully ${
+              actionType === "accept" ? "accepted" : "rejected"
+            }!`
+          );
         })
         .catch((error) => {
           console.error(
             "There was an error updating the appointment status!",
             error
           );
+          toast.error(
+            `Failed to ${
+              actionType === "accept" ? "accept" : "reject"
+            } the appointment. Please try again.`
+          );
         });
     }
   };
 
   return (
-    <div className="appointment-main-div  mt-5">
+    <div className="appointment-main-div mt-5">
+      <ToastContainer />
       <h2 className="text-center mb-4">Appointments for Mechanic</h2>
       <div className="appoit-table">
         <table
-          className="table  w-100"
+          className="table w-100"
           style={{ width: "100%", maxWidth: "1200px" }}
         >
           <thead className="thead-dark">

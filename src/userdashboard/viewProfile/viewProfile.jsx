@@ -33,7 +33,7 @@ const timeSlotsOptions = [
 
 const ViewProfile = () => {
   const { user } = useContext(AuthContext);
-  const [dpImage, setDpImage] = useState(null); // Initialize with null
+  const [dpImage, setDpImage] = useState(null);
   const [formValues, setFormValues] = useState({
     username: "",
     email: "",
@@ -63,7 +63,6 @@ const ViewProfile = () => {
         yrsOfExperience: user.yrsOfExperience || "",
       });
 
-      console.log(user, "user profile image");
       if (user?.profileImage) {
         setDpImage(`http://localhost:3001/${user.profileImage}`);
       } else {
@@ -141,25 +140,17 @@ const ViewProfile = () => {
         formData.append("profileImage", dpImage);
       }
 
-      const response = await axios.put(
-        "http://localhost:3001/profile",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      await axios.put("http://localhost:3001/profile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       notifySuccess("Profile updated successfully", 1000);
     } catch (error) {
       notifyError(error.response?.data?.message || "An error occurred", 1000);
     }
   };
-
-  useEffect(() => {
-    console.log(dpImage, "dp Image");
-  }, [dpImage]);
 
   if (!user) {
     return <div>Loading...</div>;
@@ -168,9 +159,9 @@ const ViewProfile = () => {
   return (
     <div className="view-profile-main">
       <h4 className="text-center">Edit Profile</h4>
-      <div className="user-id-conatainer d-flex">
+      <div className="user-id-container d-flex">
         <div className="left">
-          {/* <img
+          <img
             src={
               dpImage
                 ? dpImage instanceof File
@@ -180,10 +171,19 @@ const ViewProfile = () => {
             }
             alt="Profile"
             className="dp"
-          /> */}
-          <img src={dp} />
+            style={{
+              borderRadius: "100px",
+              border: "3px solid black",
+              width: "200px",
+              height: "200px",
+            }}
+          />
           <label htmlFor="file-upload" className="camera-icon cursor-pointer">
-            <img src={camera} alt="Upload" />
+            <img
+              src={camera}
+              alt="Upload"
+              style={{ marginLeft: "150px", marginTop: "-100px" }}
+            />
           </label>
           <input
             id="file-upload"
@@ -194,7 +194,9 @@ const ViewProfile = () => {
           />
         </div>
         <div className="right d-flex flex-column">
-          <h5 className="fw-bold">{user.username}</h5>
+          <h3 className="fw-bold mt-5 pt-5 mx-4" style={{ color: "green" }}>
+            {user.username}
+          </h3>
           <p>{user.email}</p>
         </div>
       </div>
